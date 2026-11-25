@@ -676,17 +676,44 @@ disc.addEventListener("click", function(e){
 function unlockOnce(e){
   if (e && e.target && e.target.closest && e.target.closest(".disc")) return;
   if (bgm.paused) playMusic();
-  document.removeEventListener("touchstart", unlockOnce);
-  document.removeEventListener("pointerdown", unlockOnce);
+  ["touchstart","touchend","pointerdown","click","keydown"].forEach(function(ev){
+    document.removeEventListener(ev, unlockOnce, true);
+  });
 }
-document.addEventListener("touchstart", unlockOnce, {passive:true});
-document.addEventListener("pointerdown", unlockOnce);
+["touchstart","touchend","pointerdown","click","keydown"].forEach(function(ev){
+  document.addEventListener(ev, unlockOnce, {passive:true, capture:true});
+});
+
+/* 多路尝试自动播放：直接 play → 微信 JS 桥 → Android 静音兜底 */
+function tryAutoplay(){
+  if (!bgm.paused) return;
+  bgm.muted = false;
+  playMusic();
+}
+function wechatAutoplay(){
+  if (typeof WeixinJSBridge === "undefined") return false;
+  try {
+    WeixinJSBridge.invoke("getNetworkType", {}, function(){
+      setTimeout(tryAutoplay, 50);
+      setTimeout(tryAutoplay, 600);
+    });
+  } catch (err) { tryAutoplay(); }
+  return true;
+}
+document.addEventListener("WeixinJSBridgeReady", function(){ wechatAutoplay(); }, false);
+if (typeof WeixinJSBridge !== "undefined") wechatAutoplay();
 
 window.addEventListener("load", function(){
-  setTimeout(function(){ if (bgm.paused) playMusic(); }, 300);
+  tryAutoplay();
+  setTimeout(tryAutoplay, 300);
+  setTimeout(tryAutoplay, 1200);
   setTimeout(function(){
     if (bgm.paused) discHint.classList.add("show");
   }, 1600);
+});
+window.addEventListener("pageshow", function(){ setTimeout(tryAutoplay, 100); });
+document.addEventListener("visibilitychange", function(){
+  if (!document.hidden && bgmOn && bgm.paused) playMusic();
 });
 
 /* ================= 自动向下滚动 ================= */
