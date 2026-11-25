@@ -195,6 +195,10 @@ section{position:relative;padding:64px 0}
 .grid2 .cell:nth-child(odd){margin-top:0}
 .grid2 .cell:nth-child(even){margin-top:26px}
 
+/* 双列（通用） */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.duo .photo{padding:6px;outline-offset:4px}
+
 /* ============ 夜章 ============ */
 .night{
   background:#241715;color:#F2E7D1;padding:70px 0;
@@ -494,6 +498,21 @@ section{position:relative;padding:64px 0}
     </div>
     <div class="photo" style="margin-top:24px"><img class="tapable" src="assets/p07-corridor.jpg" alt="走廊里的合影" loading="lazy" /></div>
     <div class="caption">有 些 体 面 · 只 为 这 一 天</div>
+  </div>
+</section>
+
+<!-- ============ 一起走过的路 ============ -->
+<section class="portraits">
+  <div class="wrap">
+    <div class="eyebrow">Walks</div>
+    <h2 class="title">一 起 走 过 的 路</h2>
+    <div class="duo" style="margin-top:26px">
+      <div class="photo"><img class="tapable" src="assets/p13-walk1.jpg" alt="从门廊下一同走出去" loading="lazy" /></div>
+      <div class="photo"><img class="tapable" src="assets/p14-walk2.jpg" alt="广场上牵手走过" loading="lazy" /></div>
+    </div>
+    <div class="caption">穿 堂 而 过 · 光 在 前 面</div>
+    <div class="photo" style="max-width:66%;margin:30px auto 0"><img class="tapable" src="assets/p15-oil-portrait.jpg" alt="油画背景前的近景" loading="lazy" /></div>
+    <div class="caption">镜 头 近 一 点 · 就 是 我 们</div>
   </div>
 </section>
 
