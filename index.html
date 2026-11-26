@@ -247,12 +247,13 @@ section{position:relative;padding:64px 0}
 
 /* 打车行：导航 / 复制 按钮置于「打车地址搜」左侧 */
 .card-line.addr-line{align-items:center;padding:12px 0}
+.card-line.addr-line .k{flex:0 0 40px;width:40px}
 .card-line.addr-line .v{flex:1 1 auto;min-width:0}
 .card-line.drive{border-bottom:0;padding-bottom:6px}
-.addr-row{display:flex;align-items:center;gap:9px;justify-content:flex-end}
+.addr-row{display:flex;align-items:center;gap:8px;justify-content:flex-end}
 .addr-acts{display:flex;flex-direction:column;gap:6px;flex:0 0 auto;width:64px}
 .addr-txt{text-align:right;line-height:1.6;flex:1 1 auto;min-width:0}
-.card-line .addr-row .addr-txt b{font-size:12.5px;line-height:1.5;letter-spacing:0;display:inline-block}
+.card-line .addr-row .addr-txt b{font-size:12px;line-height:1.5;letter-spacing:0;display:inline-block}
 .card-line .btn-mini{
   font-family:var(--serif-cn);font-size:9.5px;letter-spacing:.02em;text-indent:.02em;
   padding:6px 4px;line-height:1.2;border-radius:999px;white-space:nowrap;width:100%;
@@ -768,7 +769,7 @@ var sheetOpen = false;
 
 function now(){ return performance.now(); }
 function noteInteraction(){
-  pausedUntil = now() + 5200;
+  pausedUntil = now() + 3000;
 }
 ["wheel","touchstart","touchmove","pointerdown","mousedown","keydown"].forEach(function(ev){
   window.addEventListener(ev, noteInteraction, {passive:true});
