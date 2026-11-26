@@ -10,19 +10,21 @@
 <meta property="og:site_name" content="张世吉 &amp; 詹悦琪" />
 <meta property="og:title" content="张世吉 &amp; 詹悦琪 的婚礼邀请函" />
 <meta property="og:description" content="2026.12.24 · 18:30 入席，敬请光临，期待您的到来。" />
-<meta property="og:image" content="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Ws4GbmBGyoM2DHx2VdacnelrnFV" />
+<meta property="og:image" content="https://zfour777.github.io/wedding-invite/assets/share-cover.jpg" />
 <meta property="og:image:width" content="800" />
 <meta property="og:image:height" content="800" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="张世吉 &amp; 詹悦琪 的婚礼邀请函" />
 <meta name="twitter:description" content="2026.12.24 · 18:30 入席，敬请光临，期待您的到来。" />
-<meta name="twitter:image" content="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Ws4GbmBGyoM2DHx2VdacnelrnFV" />
-<meta itemprop="image" content="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Ws4GbmBGyoM2DHx2VdacnelrnFV" />
+<meta name="twitter:image" content="https://zfour777.github.io/wedding-invite/assets/share-cover.jpg" />
+<meta itemprop="image" content="https://zfour777.github.io/wedding-invite/assets/share-cover.jpg" />
 <link rel="preconnect" href="https://miaoda.feishu.cn" />
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Pinyon+Script&family=Great+Vibes&family=Marcellus&family=Noto+Serif+SC:wght@300;400;600;700&display=swap" />
 <style>
 /* ============ 基础变量 ============ */
+@font-face{font-family:"WedSerif";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/noto-serif-sc-cn-400.woff2") format("woff2")}
+@font-face{font-family:"WedSerif";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/noto-serif-sc-cn-600.woff2") format("woff2")}
 :root{
   --ink:#8B1F22;
   --ink-2:rgba(139,31,34,.62);
@@ -30,7 +32,7 @@
   --paper:#F2E7D1;
   --paper-2:#FBF5E6;
   --deep:#40302A;
-  --serif-cn:"Noto Serif SC","Songti SC","STSong",serif;
+  --serif-cn:"WedSerif","Noto Serif SC","Songti SC","STSong","Source Han Serif SC","SimSun",serif;
   --script:"Pinyon Script","Great Vibes","Snell Roundhand",cursive;
   --caps:"Marcellus","Cinzel","Times New Roman",serif;
 }
@@ -242,6 +244,20 @@ section{position:relative;padding:64px 0}
 .btn-primary:active{transform:translateY(1px);opacity:.92}
 .btn:active{opacity:.8}
 .btn-ghost{padding:12px 16px}
+
+/* 打车行：导航 / 复制 按钮置于「打车地址搜」左侧 */
+.card-line.addr-line{align-items:center;padding:12px 0}
+.card-line.addr-line .v{flex:1 1 auto;min-width:0}
+.card-line.drive{border-bottom:0;padding-bottom:6px}
+.addr-row{display:flex;align-items:center;gap:9px;justify-content:flex-end}
+.addr-acts{display:flex;flex-direction:column;gap:6px;flex:0 0 auto;width:64px}
+.addr-txt{text-align:right;line-height:1.6;flex:1 1 auto;min-width:0}
+.card-line .addr-row .addr-txt b{font-size:12.5px;line-height:1.5;letter-spacing:0;display:inline-block}
+.card-line .btn-mini{
+  font-family:var(--serif-cn);font-size:9.5px;letter-spacing:.02em;text-indent:.02em;
+  padding:6px 4px;line-height:1.2;border-radius:999px;white-space:nowrap;width:100%;
+  text-align:center
+}
 
 /* 路线小图 */
 .route{
@@ -553,13 +569,27 @@ section{position:relative;padding:64px 0}
         <span class="k">Time</span>
         <span class="v"><b><span data-time>18:30</span> 开席</b><small>提 前 半 小 时 入 场</small></span>
       </div>
-      <div class="card-line">
+      <div class="card-line taxi addr-line">
         <span class="k">Taxi</span>
-        <span class="v">打车地址搜<br /><b id="addrText">格色风专业烫染设计(西红塘店)</b></span>
+        <span class="v">
+          <span class="addr-row">
+            <span class="addr-acts">
+              <button class="btn btn-ghost btn-mini" id="copyAddr">复制地址</button>
+            </span>
+            <span class="addr-txt">打车地址搜<br /><b id="addrText">格色风专业烫染设计(西红塘店)</b></span>
+          </span>
+        </span>
       </div>
-      <div class="card-line">
+      <div class="card-line drive addr-line">
         <span class="k">Drive</span>
-        <span class="v" style="color:var(--ink-2)">自驾地址待定<small>具体导航位置将私信告知~</small></span>
+        <span class="v">
+          <span class="addr-row">
+            <span class="addr-acts">
+              <button class="btn btn-primary btn-mini" id="openNav">一键导航</button>
+            </span>
+            <span class="addr-txt">自驾停车地址<br /><b id="parkText">西洪塘小学（西门）</b></span>
+          </span>
+        </span>
       </div>
 
       <div class="route" aria-hidden="true">
@@ -572,10 +602,6 @@ section{position:relative;padding:64px 0}
         <span class="pin">在此相聚</span>
       </div>
 
-      <div class="addr-tools">
-        <button class="btn btn-primary" id="openNav">一 键 导 航</button>
-        <button class="btn btn-ghost" id="copyAddr">复 制 地 址</button>
-      </div>
     </div>
   </div>
 </section>
@@ -591,8 +617,7 @@ section{position:relative;padding:64px 0}
       <path d="M82 13 C 106 4 122 22 148 13" />
     </svg>
 
-    <div class="sig" data-groom>张世吉</div>
-    <div class="sig" style="margin-top:0">&amp; <span data-bride>詹悦琪</span></div>
+    <div class="sig"><span data-groom>张世吉</span> &amp; <span data-bride>詹悦琪</span></div>
     <div class="meta">2 0 2 6 · 1 2 · 2 4</div>
 
     <button class="to-top" id="toTop"><span class="arw"></span>回 到 顶 部</button>
@@ -618,11 +643,6 @@ section{position:relative;padding:64px 0}
     <span class="go">›</span>
   </button>
 
-  <button class="nav-item" id="navHxz">
-    <span class="ic">猪</span>
-    <span class="tx"><b>花小猪打车</b><small>复制地址，打开花小猪粘贴搜索</small></span>
-    <span class="go">›</span>
-  </button>
 
   <button class="nav-item" id="navSys">
     <span class="ic">地图</span>
@@ -641,7 +661,8 @@ var CFG = {
   bride: "詹悦琪",
   date: "2026.12.24",
   time: "18:30",
-  address: "格色风专业烫染设计(西红塘店)",
+  address: "格色风专业烫染设计(西红塘店)",   // 打车地址（复制用）
+  park: "西洪塘小学（西门）",                // 自驾停车点（导航用）
   scrollSpeed: 30           // 自动滚动速度，px/秒；想慢一点改 22，快一点改 42
 };
 
@@ -651,8 +672,11 @@ var CFG = {
   document.querySelectorAll("[data-bride]").forEach(function(el){ el.textContent = CFG.bride; });
   document.querySelectorAll("[data-date]").forEach(function(el){ el.textContent = CFG.date; });
   document.querySelectorAll("[data-time]").forEach(function(el){ el.textContent = CFG.time; });
-  ["addrText","sheetAddr"].forEach(function(id){
+  ["addrText"].forEach(function(id){
     var el = document.getElementById(id); if (el) el.textContent = CFG.address;
+  });
+  ["parkText","sheetAddr"].forEach(function(id){
+    var el = document.getElementById(id); if (el) el.textContent = CFG.park;
   });
 })();
 
@@ -871,22 +895,16 @@ document.getElementById("copyAddr").addEventListener("click", copyAddress);
 
 /* 高德 */
 document.getElementById("navAmap").addEventListener("click", function(){
-  var kw = encodeURIComponent(CFG.address);
+  var kw = encodeURIComponent(CFG.park);
   var url = "https://uri.amap.com/search?keyword=" + kw + "&callnative=1&src=doubao&coordinate=gaode";
   closeSheet();
   window.location.href = url;
 });
 
-/* 花小猪：复制地址 + 提示 */
-document.getElementById("navHxz").addEventListener("click", function(){
-  copyAddress();
-  showToast("地址已复制，去花小猪里粘贴");
-  closeSheet();
-});
 
 /* 系统地图 */
 document.getElementById("navSys").addEventListener("click", function(){
-  var q = encodeURIComponent(CFG.address);
+  var q = encodeURIComponent(CFG.park);
   var ua = navigator.userAgent;
   var url;
   if (/iPhone|iPad|iPod/i.test(ua)) {
